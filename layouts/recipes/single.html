@@ -23,24 +23,25 @@
       <h1 class="post-title center m1 sm-mt3" itemprop="name">{{ .Title }}</h1>
     </header>
 
-    <div class="px2 mt3 clearfix">
-      <div class="sm-col-8 mx-auto" itemprop="description">{{.Content}}</div>
-    </div>
-
     <div class="clearfix mt3">
       {{ with .Params.yield }}
-      <div class="sm-col sm-col-2">
+      <div class="sm-col sm-col-3">
         <h4 class="brown mt0 mb2 xs-center">Yields: {{ . }}</h4>
       </div>
       {{ end }}
       {{ with .Params.prepTime }}
-      <div class="sm-col sm-col-2">
+      <div class="sm-col sm-col-3">
         <h4 class="brown mt0 mb2 xs-center">Preparation time: {{ . }}</h4>
       </div>
       {{ end }}
       {{ with .Params.cookTime }}
-      <div class="sm-col sm-col-2">
+      <div class="sm-col sm-col-3">
         <h4 class="brown mt0 mb2 xs-center">Cooking time: {{ . }}</h4>
+      </div>
+      {{ end }}
+      {{ with .Params.waitTime }}
+      <div class="sm-col sm-col-3">
+        <h4 class="brown mt0 mb2 xs-center">Waiting time: {{ . }}</h4>
       </div>
       {{ end }}
     </div>
@@ -48,11 +49,11 @@
     <!-- call up recipe and directions -->
     <div class="clearfix mt3">
       <div class="sm-col sm-col-6 lg-col-6 recipeItems">
-        <!-- check if it's a component-based recipe -->
-        {{ with .Params.Components}}
-        <h4 class="brown mt0 mb2 xs-center">Components</h4>
+
+        {{ with .Params.Tools}}
+        <h4 class="brown mt0 mb2 xs-center">Tools</h4>
         <ul>
-          <!-- list components that make up recipe -->
+          <!-- list tools that are needed for the recipe -->
           {{ range . }}
           <li>
             {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
@@ -84,6 +85,10 @@
         </ul>
       </div>
     </div>
+
+    <div class="px2 mt3 clearfix">
+      <div class="sm-col-8 mx-auto" itemprop="description">{{.Content}}</div>
+    </div>
     <!-- end recipe and directions -->
 
     <!-- check if it's a component-based recipe, render it -->
@@ -95,7 +100,7 @@
     <div class="clearfix mxn2">
       {{ range  . }}
       {{ $compTitle := . }}
-      <div class="sm-col sm-col-4 px2 recipeItems">
+      <div class="sm-col sm-col-6 px2 recipeItems">
         {{ range where $.Site.Pages "Title" $compTitle }}
         <h4 class="brown center">{{ .Title }}</h4>
         {{ range (.Resources.ByType "image") }}
@@ -112,6 +117,15 @@
           </svg>
         </a>
         {{ end }}
+
+        <h4 class="brown regular xs-center">Tools</h4>
+        <ul class="tools" itemprop="tools">
+          {{ range .Params.Tools }}
+          <li itemprop="tools">
+            {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
+          </li>
+          {{ end }}
+        </ul>
 
         <h4 class="brown regular xs-center">Ingredients</h4>
         <ul class="ingredients" itemprop="ingredients">
@@ -131,6 +145,9 @@
           {{ end }}
         </ul>
 
+        <div class="px2 mt3 clearfix">
+          <div class="sm-col-8 mx-auto" itemprop="description">{{.Content}}</div>
+        </div>
         {{ end }}
       </div>
       {{ end }}
