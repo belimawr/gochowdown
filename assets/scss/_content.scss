@@ -44,7 +44,7 @@
     height: 24px;
     width: 24px;
     border-radius: 5px;
-    border: 2px solid $brown;
+    border: 2px solid $blue;
     transition: all 0.3s ease-out;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
@@ -56,7 +56,7 @@
 .checkbox-label input:checked ~ .checkbox-custom {
     background-color: $white;
     border-radius: 5px;
-    border: 2px solid $brown;
+    border: 2px solid $blue;
     -webkit-transform: rotate(0deg) scale(1);
     -ms-transform: rotate(0deg) scale(1);
     transform: rotate(0deg) scale(1);
@@ -72,7 +72,7 @@
     height: 0px;
     width: 0px;
     border-radius: 5px;
-    border: solid $brown;
+    border: solid $blue;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(0deg) scale(0);
     -ms-transform: rotate(0deg) scale(0);
@@ -95,7 +95,7 @@
   top: 2px;
   width: 6px;
   height: 12px;
-  border: solid $brown;
+  border: solid $blue;
   border-width: 0 3px 3px 0;
   background-color: transparent;
   border-radius: 0;

@@ -1,5 +1,5 @@
 {{ $tileurl := "assets/tile.jpg" | absURL }}
-$bg-brown-tile-url: "{{ $tileurl  }}";
+$bg-blue-tile-url: "{{ $tileurl  }}";
 
 @import "variables";
 @import "base";
